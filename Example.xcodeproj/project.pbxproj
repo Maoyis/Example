@@ -14,6 +14,10 @@
 		6072181D27FD69CD007E50D3 /* Example.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6072181B27FD69CD007E50D3 /* Example.xcdatamodeld */; };
 		6072181F27FD69CF007E50D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6072181E27FD69CF007E50D3 /* Assets.xcassets */; };
 		6072182227FD69CF007E50D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6072182027FD69CF007E50D3 /* LaunchScreen.storyboard */; };
+		607218A527FD7551007E50D3 /* LXLayoutKit in Frameworks */ = {isa = PBXBuildFile; productRef = 607218A427FD7551007E50D3 /* LXLayoutKit */; };
+		607218A727FD76B2007E50D3 /* LXCommonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 607218A627FD76B2007E50D3 /* LXCommonKit */; };
+		607218AA27FD7D4E007E50D3 /* LXNotificationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 607218A927FD7D4E007E50D3 /* LXNotificationKit */; };
+		607218AC27FD8847007E50D3 /* SnapshotPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607218AB27FD8847007E50D3 /* SnapshotPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		6072181E27FD69CF007E50D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6072182127FD69CF007E50D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6072182327FD69CF007E50D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6072182A27FD69E5007E50D3 /* lxcommon-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "lxcommon-kit"; path = "../packages/lxcommon-kit"; sourceTree = "<group>"; };
+		607218A327FD7545007E50D3 /* LXLayout */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LXLayout; path = ../packages/LXLayout; sourceTree = "<group>"; };
+		607218A827FD7D32007E50D3 /* LXNotificationKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LXNotificationKit; path = ../packages/LXNotificationKit; sourceTree = "<group>"; };
+		607218AB27FD8847007E50D3 /* SnapshotPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +41,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607218AA27FD7D4E007E50D3 /* LXNotificationKit in Frameworks */,
+				607218A727FD76B2007E50D3 /* LXCommonKit in Frameworks */,
+				607218A527FD7551007E50D3 /* LXLayoutKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,8 +53,10 @@
 		6072180627FD69CD007E50D3 = {
 			isa = PBXGroup;
 			children = (
+				6072182927FD69E5007E50D3 /* Packages */,
 				6072181127FD69CD007E50D3 /* Example */,
 				6072181027FD69CD007E50D3 /* Products */,
+				6072182C27FD6A79007E50D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +74,7 @@
 				6072181227FD69CD007E50D3 /* AppDelegate.swift */,
 				6072181427FD69CD007E50D3 /* SceneDelegate.swift */,
 				6072181627FD69CD007E50D3 /* ViewController.swift */,
+				607218AB27FD8847007E50D3 /* SnapshotPage.swift */,
 				6072181827FD69CD007E50D3 /* Main.storyboard */,
 				6072181E27FD69CF007E50D3 /* Assets.xcassets */,
 				6072182027FD69CF007E50D3 /* LaunchScreen.storyboard */,
@@ -68,6 +82,23 @@
 				6072181B27FD69CD007E50D3 /* Example.xcdatamodeld */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		6072182927FD69E5007E50D3 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				6072182A27FD69E5007E50D3 /* lxcommon-kit */,
+				607218A327FD7545007E50D3 /* LXLayout */,
+				607218A827FD7D32007E50D3 /* LXNotificationKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		6072182C27FD6A79007E50D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +117,11 @@
 			dependencies = (
 			);
 			name = Example;
+			packageProductDependencies = (
+				607218A427FD7551007E50D3 /* LXLayoutKit */,
+				607218A627FD76B2007E50D3 /* LXCommonKit */,
+				607218A927FD7D4E007E50D3 /* LXNotificationKit */,
+			);
 			productName = Example;
 			productReference = 6072180F27FD69CD007E50D3 /* Example.app */;
 			productType = "com.apple.product-type.application";
@@ -145,6 +181,7 @@
 				6072181727FD69CD007E50D3 /* ViewController.swift in Sources */,
 				6072181327FD69CD007E50D3 /* AppDelegate.swift in Sources */,
 				6072181527FD69CD007E50D3 /* SceneDelegate.swift in Sources */,
+				607218AC27FD8847007E50D3 /* SnapshotPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +401,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		607218A427FD7551007E50D3 /* LXLayoutKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LXLayoutKit;
+		};
+		607218A627FD76B2007E50D3 /* LXCommonKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LXCommonKit;
+		};
+		607218A927FD7D4E007E50D3 /* LXNotificationKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LXNotificationKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		6072181B27FD69CD007E50D3 /* Example.xcdatamodeld */ = {

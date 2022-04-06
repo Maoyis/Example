@@ -7,6 +7,9 @@
 
 import UIKit
 import CoreData
+import LXNotificationKit
+import LXCommonKit
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
