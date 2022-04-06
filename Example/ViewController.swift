@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         if view.subviews.count > 1 {
             view.subviews.last?.removeFromSuperview()
         }else {
-            snapshot2()
+            
         }
     }
     
