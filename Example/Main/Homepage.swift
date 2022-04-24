@@ -6,8 +6,11 @@
 //
 
 import UIKit
+//import LXLayoutKit
 
-class Homepage: UIViewController {
+
+
+class Homepage: page {
     enum Item : String {
         case downloader = "lx-downloader"
         case other
@@ -15,6 +18,7 @@ class Homepage: UIViewController {
     lazy var table: UITableView = {
         let table = UITableView.init(frame: .zero, style: .insetGrouped)
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.description())
+        table.tableFooterView = UIView()
         view.addSubview(table)
         table.dataSource = self
         table.delegate   = self
@@ -28,7 +32,7 @@ class Homepage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "首页"
-        table.tableFooterView = UIView()
+        table.lx_tiling()
     }
 
 
