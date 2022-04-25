@@ -80,7 +80,7 @@ extension DownloadPage : UITableViewDelegate, UITableViewDataSource {
             if item == .common {
                 let task = LXCommonDownloadTask.task(with: url)
                 tasks.append(task)
-                LXDowanloader.default.download(with: task)
+                try! LXDowanloader.default.download(with: task)
                 self.table.reloadData()
             }
         }else {
