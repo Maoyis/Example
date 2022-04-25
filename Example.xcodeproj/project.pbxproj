@@ -19,6 +19,7 @@
 		6072181D27FD69CD007E50D3 /* Example.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6072181B27FD69CD007E50D3 /* Example.xcdatamodeld */; };
 		6072181F27FD69CF007E50D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6072181E27FD69CF007E50D3 /* Assets.xcassets */; };
 		6072182227FD69CF007E50D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6072182027FD69CF007E50D3 /* LaunchScreen.storyboard */; };
+		6092FF8328164EB1004A4B8C /* DownloadTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6092FF8228164EB1004A4B8C /* DownloadTaskCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		6072181E27FD69CF007E50D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6072182127FD69CF007E50D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6072182327FD69CF007E50D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6092FF8228164EB1004A4B8C /* DownloadTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		604CACB828154A370020EEFB /* download */ = {
 			isa = PBXGroup;
 			children = (
+				6092FF8128164E94004A4B8C /* view */,
 				604CACB928154A4B0020EEFB /* DownloadPage.swift */,
 			);
 			path = download;
@@ -117,6 +120,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6092FF8128164E94004A4B8C /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6092FF8228164EB1004A4B8C /* DownloadTaskCell.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 				6072181D27FD69CD007E50D3 /* Example.xcdatamodeld in Sources */,
 				6072181727FD69CD007E50D3 /* ViewController.swift in Sources */,
 				604CACBA28154A4B0020EEFB /* DownloadPage.swift in Sources */,
+				6092FF8328164EB1004A4B8C /* DownloadTaskCell.swift in Sources */,
 				6072181327FD69CD007E50D3 /* AppDelegate.swift in Sources */,
 				604CACB7281548780020EEFB /* Homepage.swift in Sources */,
 				6072181527FD69CD007E50D3 /* SceneDelegate.swift in Sources */,
