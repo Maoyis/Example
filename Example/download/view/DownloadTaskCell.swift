@@ -12,11 +12,23 @@ class DownloadTaskCell: UITableViewCell {
 
     var task:LXDownloadTask! {
         didSet {
-            self.textLabel?.text = task.name
-            self.detailTextLabel?.text = "\(task.progress)"
+            updateUI()
         }
     }
-    
+    func updateUI()  {
+        var label = task.name
+        var detail = String(format: "%.2f%%", task.progress*100)
+        switch task.status {
+        case .finished: label += ""; detail = "已完成"
+        case .downloading: label += "-下载中..."
+        case .suspend: label += "-暂停"
+        default:
+            label += "-等待中"
+            break
+        }
+        self.textLabel?.text = label
+        self.detailTextLabel?.text = detail
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -42,14 +54,12 @@ class DownloadTaskCell: UITableViewCell {
 extension DownloadTaskCell : LXDownloadTaskDelegate {
     func update(progress: Float) {
         OperationQueue.main.addOperation {[weak self] in
-            self?.detailTextLabel?.text = String(format: "%.2f%%", progress*100)
+            self?.updateUI()
         }
     }
     func update(status:LXDownloadTaskStatus) {
         OperationQueue.main.addOperation {[weak self] in
-            if status == .suspend {
-                self?.detailTextLabel?.text = "暂停"
-            }
+            self?.updateUI()
         }
     }
     

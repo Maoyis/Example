@@ -29,7 +29,9 @@ class DownloadPage: page {
     let data:[Item] = [
         .common, .m3u8
     ]
-    var tasks:[LXDownloadTask] = []
+    var tasks:[LXDownloadTask] {
+        return downloader.tasks
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,9 +89,12 @@ extension DownloadPage : UITableViewDelegate, UITableViewDataSource {
                 guard let url = URL(string: link) else { return }
                 task = LXM3U8DownloadTask.task(with: url, name: "task\(tasks.count)")
             }
-            tasks.append(task)
-            downloader.download(task: task)
-            self.table.reloadData()
+            if let old = downloader.exist(task: task) {
+                print("任务存在：\(old.name) -> \(task.name)")
+            }else {
+                downloader.download(task: task)
+                self.table.reloadData()
+            }
         }else {
             let task = tasks[indexPath.item]
             if task.status != .suspend {
