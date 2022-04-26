@@ -42,10 +42,15 @@ class DownloadTaskCell: UITableViewCell {
 extension DownloadTaskCell : LXDownloadTaskDelegate {
     func update(progress: Float) {
         OperationQueue.main.addOperation {[weak self] in
-            self?.detailTextLabel?.text = "\(progress)"
+            self?.detailTextLabel?.text = String(format: "%.2f%%", progress*100)
         }
-        
     }
-    
+    func update(status:LXDownloadTaskStatus) {
+        OperationQueue.main.addOperation {[weak self] in
+            if status == .suspend {
+                self?.detailTextLabel?.text = "暂停"
+            }
+        }
+    }
     
 }
