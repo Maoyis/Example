@@ -6,15 +6,14 @@
 //
 
 import UIKit
-import LXDowanloader
-import LXM3U8
+import LXDownloader
 
 class DownloadPage: page {
     enum Item : String {
         case common
         case m3u8
     }
-    var downloader:LXDowanloader = LXDowanloader.default
+    var downloader:LXDownloader = LXDownloader.default
     lazy var table: UITableView = {
         let table = UITableView.init(frame: .zero, style: .insetGrouped)
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.description())
@@ -70,9 +69,7 @@ extension DownloadPage : UITableViewDelegate, UITableViewDataSource {
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: DownloadTaskCell.description(), for: indexPath) as! DownloadTaskCell
             let task = tasks[indexPath.item]
-            if let commonTask = task as? LXCommonDownloadTask {
-                commonTask.delegate = cell
-            }
+            task.delegate = cell
             cell.task = task
             return cell
         }
@@ -91,14 +88,14 @@ extension DownloadPage : UITableViewDelegate, UITableViewDataSource {
                 task = LXM3U8DownloadTask.task(with: url, name: "task\(tasks.count)")
             }
             tasks.append(task)
-            try! downloader.download(with: task)
+            downloader.download(task: task)
             self.table.reloadData()
         }else {
             let task = tasks[indexPath.item]
             if task.status != .suspend {
-                downloader.suspend(with: task)
+                downloader.suspend(task: task)
             }else {
-                try! downloader.download(with: task)
+                downloader.download(task: task)
             }
         }
         

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6031B78628154C0A00F51540 /* LXDowanloader in Frameworks */ = {isa = PBXBuildFile; productRef = 6031B78528154C0A00F51540 /* LXDowanloader */; };
 		6031B78928154E3000F51540 /* LXLayoutKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6031B78828154E3000F51540 /* LXLayoutKit */; };
 		6031B78B28154EAB00F51540 /* page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031B78A28154EAB00F51540 /* page.swift */; };
 		604CACB7281548780020EEFB /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604CACB6281548780020EEFB /* Homepage.swift */; };
@@ -19,6 +18,7 @@
 		6072181D27FD69CD007E50D3 /* Example.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6072181B27FD69CD007E50D3 /* Example.xcdatamodeld */; };
 		6072181F27FD69CF007E50D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6072181E27FD69CF007E50D3 /* Assets.xcassets */; };
 		6072182227FD69CF007E50D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6072182027FD69CF007E50D3 /* LaunchScreen.storyboard */; };
+		6074B5E42817EFD60015AC2E /* LXDownloadKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6074B5E32817EFD60015AC2E /* LXDownloadKit */; };
 		6092FF8328164EB1004A4B8C /* DownloadTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6092FF8228164EB1004A4B8C /* DownloadTaskCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,8 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6031B78628154C0A00F51540 /* LXDowanloader in Frameworks */,
 				6031B78928154E3000F51540 /* LXLayoutKit in Frameworks */,
+				6074B5E42817EFD60015AC2E /* LXDownloadKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,8 +147,8 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				6031B78528154C0A00F51540 /* LXDowanloader */,
 				6031B78828154E3000F51540 /* LXLayoutKit */,
+				6074B5E32817EFD60015AC2E /* LXDownloadKit */,
 			);
 			productName = Example;
 			productReference = 6072180F27FD69CD007E50D3 /* Example.app */;
@@ -434,13 +434,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6031B78528154C0A00F51540 /* LXDowanloader */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LXDowanloader;
-		};
 		6031B78828154E3000F51540 /* LXLayoutKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LXLayoutKit;
+		};
+		6074B5E32817EFD60015AC2E /* LXDownloadKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LXDownloadKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

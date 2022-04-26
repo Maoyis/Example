@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import LXDowanloader
+import LXDownloader
 
 class DownloadTaskCell: UITableViewCell {
 

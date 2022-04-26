@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import LXDowanloader
+import LXDownloader
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
-        LXDowanloader.default.disconnect()
+        LXDownloader.default.disconnect()
         print("sceneDidDisconnect")
     }
 
