@@ -8,7 +8,31 @@
 import UIKit
 import LXDownloader
 
+extension LXDownloadTask {
+    func map() -> [String:Any] {
+        return [
+            "input" : input,
+            "name"  : name
+        ]
+    }
+}
+
 class DownloadPage: page {
+    struct TaskRecord {
+        var input:URL!
+        var name:String!
+        
+        
+    }
+    var historyFile:URL {
+        guard let cache = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
+            fatalError("no cache floder")
+        }
+        var file = URL(fileURLWithPath: cache)
+        file.appendPathComponent("tasks.plsit")
+        print(file)
+        return file
+    }
     enum Item : String {
         case common
         case m3u8
@@ -25,7 +49,6 @@ class DownloadPage: page {
         table.delegate   = self
         return table
     }()
-    
     let data:[Item] = [
         .common, .m3u8
     ]
@@ -35,14 +58,39 @@ class DownloadPage: page {
         super.viewDidLoad()
         self.title = "下载"
         table.lx_tiling()
-        guard let cache = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
-            fatalError("no cache floder")
-        }
-        let floder = URL(fileURLWithPath: cache)
-        print(floder)
+        self.loadTasks()
+        
     }
-
-
+    
+    func insert(task:LXDownloadTask)  {
+        tasks.append(task)
+        updateFile()
+        self.table.reloadData()
+    }
+    func delete(index:Int)  {
+        tasks.remove(at: index)
+        updateFile()
+    }
+    func updateFile() {
+        try! (tasks.map({$0.map()}) as NSArray).write(to: historyFile)
+    }
+    func loadTasks()  {
+        let infos = NSArray(contentsOf: historyFile)
+        infos?.forEach { map  in
+            let info = map as! [String:Any]
+            let input = info["input"] as! URL
+            let name = info["name"] as! String
+            var model:LXDownloadTask!
+            if input.absoluteString.contains(".m3u8") {
+                model = LXM3U8DownloadTask.task(with: input, name: name)
+            }else {
+                model = LXCommonDownloadTask.task(with: input, name: name)
+            }
+            downloader.download(task: model)
+            tasks.append(model)
+            table.reloadData()
+        }
+    }
 }
 
 
@@ -91,8 +139,7 @@ extension DownloadPage : UITableViewDelegate, UITableViewDataSource {
                 print("任务存在：\(old.name) -> \(task.name)")
             }else {
                 downloader.download(task: task)
-                tasks.append(task)
-                self.table.reloadData()
+                insert(task: task)
             }
         }else {
             let task = tasks[indexPath.item]
