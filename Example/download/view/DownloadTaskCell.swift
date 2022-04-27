@@ -52,7 +52,7 @@ class DownloadTaskCell: UITableViewCell {
 
 
 extension DownloadTaskCell : LXDownloadTaskDelegate {
-    func update(progress: Float) {
+    func update(length: Int64, downloaded: Int64, total: Int64) {
         OperationQueue.main.addOperation {[weak self] in
             self?.updateUI()
         }

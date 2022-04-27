@@ -40,7 +40,7 @@ class DownloadPage: page {
         guard let cache = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
             fatalError("no cache floder")
         }
-        var floder = URL(fileURLWithPath: cache)
+        let floder = URL(fileURLWithPath: cache)
         print(floder)
     }
 
