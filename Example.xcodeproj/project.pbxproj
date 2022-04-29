@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		602D1760281BB31A00CFF8FC /* TestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D175F281BB31A00CFF8FC /* TestPage.swift */; };
 		6031B78928154E3000F51540 /* LXLayoutKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6031B78828154E3000F51540 /* LXLayoutKit */; };
 		6031B78B28154EAB00F51540 /* page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031B78A28154EAB00F51540 /* page.swift */; };
 		604CACB7281548780020EEFB /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604CACB6281548780020EEFB /* Homepage.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		602D175F281BB31A00CFF8FC /* TestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPage.swift; sourceTree = "<group>"; };
 		6031B78428154BE600F51540 /* LXDowanloader */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LXDowanloader; path = ../packages/LXDowanloader; sourceTree = "<group>"; };
 		6031B78728154E0300F51540 /* LXLayout */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LXLayout; path = ../packages/LXLayout; sourceTree = "<group>"; };
 		6031B78A28154EAB00F51540 /* page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = page.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				6072181227FD69CD007E50D3 /* AppDelegate.swift */,
 				6072181427FD69CD007E50D3 /* SceneDelegate.swift */,
 				6072181627FD69CD007E50D3 /* ViewController.swift */,
+				602D175F281BB31A00CFF8FC /* TestPage.swift */,
 				6031B78A28154EAB00F51540 /* page.swift */,
 				6072181827FD69CD007E50D3 /* Main.storyboard */,
 				6072181E27FD69CF007E50D3 /* Assets.xcassets */,
@@ -212,6 +215,7 @@
 				6092FF8328164EB1004A4B8C /* DownloadTaskCell.swift in Sources */,
 				6072181327FD69CD007E50D3 /* AppDelegate.swift in Sources */,
 				604CACB7281548780020EEFB /* Homepage.swift in Sources */,
+				602D1760281BB31A00CFF8FC /* TestPage.swift in Sources */,
 				6072181527FD69CD007E50D3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

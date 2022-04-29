@@ -13,6 +13,8 @@ import UIKit
 class Homepage: page {
     enum Item : String {
         case downloader = "lx-downloader"
+        case test
+
         case other
     }
     lazy var table: UITableView = {
@@ -25,8 +27,9 @@ class Homepage: page {
         return table
     }()
     
-    let data:[Item] = [
-        .downloader
+    let data:[[Item]] = [
+        [.downloader],
+        [.test]
     ]
     
     override func viewDidLoad() {
@@ -41,21 +44,27 @@ class Homepage: page {
 
 
 extension Homepage : UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return data.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.description(), for: indexPath)
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = data[indexPath.item].rawValue
+        let items = data[indexPath.section]
+        cell.textLabel?.text = items[indexPath.item].rawValue
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = data[indexPath.section]
+        let items = data[indexPath.section]
+        let item = items[indexPath.row]
         var page:UIViewController!
         switch item {
         case .downloader: page = DownloadPage()
+        case .test: page = TestPage()
         default:
             break
         }

@@ -11,7 +11,7 @@ import LXDownloader
 extension LXDownloadTask {
     func map() -> [String:Any] {
         return [
-            "input" : input,
+            "input" : input.absoluteString,
             "name"  : name
         ]
     }
@@ -36,6 +36,7 @@ class DownloadPage: page {
     enum Item : String {
         case common
         case m3u8
+        case zm = "直播"
     }
     var downloader:LXDownloader = LXDownloader.default
     lazy var table: UITableView = {
@@ -50,7 +51,7 @@ class DownloadPage: page {
         return table
     }()
     let data:[Item] = [
-        .common, .m3u8
+        .common, .m3u8, .zm
     ]
     var tasks:[LXDownloadTask] = []
     
@@ -78,7 +79,7 @@ class DownloadPage: page {
         let infos = NSArray(contentsOf: historyFile)
         infos?.forEach { map  in
             let info = map as! [String:Any]
-            let input = info["input"] as! URL
+            let input = URL(string: info["input"] as! String)!
             let name = info["name"] as! String
             var model:LXDownloadTask!
             if input.absoluteString.contains(".m3u8") {
@@ -88,8 +89,9 @@ class DownloadPage: page {
             }
             downloader.download(task: model)
             tasks.append(model)
-            table.reloadData()
         }
+        table.reloadData()
+
     }
 }
 
@@ -131,7 +133,10 @@ extension DownloadPage : UITableViewDelegate, UITableViewDataSource {
                 guard let url = URL(string: link) else { return }
                 task = LXCommonDownloadTask.task(with: url, name: "task\(tasks.count)")
             }else {
-                let link = "https://new.iskcd.com/20220408/1M9NVcM7/index.m3u8?time=\(Date.now.timeIntervalSince1970)"
+                var link = "https://new.iskcd.com/20220408/1M9NVcM7/index.m3u8?time=\(Date.now.timeIntervalSince1970)"
+                if item == .zm {
+                    link = "http://stream10.fjtv.net/cctv1/playlist.m3u8?_upt=4f9c1b3b1651226109"
+                }
                 guard let url = URL(string: link) else { return }
                 task = LXM3U8DownloadTask.task(with: url, name: "task\(tasks.count)")
             }
