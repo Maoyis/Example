@@ -30,7 +30,6 @@ class DownloadPage: page {
         }
         var file = URL(fileURLWithPath: cache)
         file.appendPathComponent("tasks.plsit")
-        print(file)
         return file
     }
     enum Item : String {
@@ -60,7 +59,7 @@ class DownloadPage: page {
         self.title = "下载"
         table.lx_tiling()
         self.loadTasks()
-        
+        print(historyFile)
     }
     
     func insert(task:LXDownloadTask)  {
