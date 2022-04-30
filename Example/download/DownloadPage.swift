@@ -132,7 +132,7 @@ extension DownloadPage : UITableViewDelegate, UITableViewDataSource {
                 guard let url = URL(string: link) else { return }
                 task = LXCommonDownloadTask.task(with: url, name: "task\(tasks.count)")
             }else {
-                var link = "https://new.iskcd.com/20220408/1M9NVcM7/index.m3u8?time=\(Date.now.timeIntervalSince1970)"
+                var link = "https://n1.szjal.cn/20210411/2q5aIbup/index.m3u8?time=\(Date.now.timeIntervalSince1970)"
                 if item == .zm {
                     link = "http://stream10.fjtv.net/cctv1/playlist.m3u8?_upt=fc595b6e1651233221"
                 }
