@@ -12,6 +12,7 @@
 		51944F62281EBF1000E25340 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51944F61281EBF1000E25340 /* EditCell.swift */; };
 		51944F66281EC13D00E25340 /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51944F65281EC13D00E25340 /* DownloadTask.swift */; };
 		51944F68281ECBDD00E25340 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51944F67281ECBDD00E25340 /* Downloader.swift */; };
+		51944F6B281EDE3F00E25340 /* LXCommonKit in Frameworks */ = {isa = PBXBuildFile; productRef = 51944F6A281EDE3F00E25340 /* LXCommonKit */; };
 		602D1760281BB31A00CFF8FC /* TestPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602D175F281BB31A00CFF8FC /* TestPage.swift */; };
 		6031B78928154E3000F51540 /* LXLayoutKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6031B78828154E3000F51540 /* LXLayoutKit */; };
 		6031B78B28154EAB00F51540 /* page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6031B78A28154EAB00F51540 /* page.swift */; };
@@ -34,6 +35,7 @@
 		51944F61281EBF1000E25340 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCell.swift; sourceTree = "<group>"; };
 		51944F65281EC13D00E25340 /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
 		51944F67281ECBDD00E25340 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		51944F69281ED1AF00E25340 /* LXCommonKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LXCommonKit; path = ../Packages/LXCommonKit; sourceTree = "<group>"; };
 		602D175F281BB31A00CFF8FC /* TestPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPage.swift; sourceTree = "<group>"; };
 		6031B78428154BE600F51540 /* LXDowanloader */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LXDowanloader; path = ../packages/LXDowanloader; sourceTree = "<group>"; };
 		6031B78728154E0300F51540 /* LXLayout */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LXLayout; path = ../packages/LXLayout; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			files = (
 				6031B78928154E3000F51540 /* LXLayoutKit in Frameworks */,
 				6074B5E42817EFD60015AC2E /* LXDownloadKit in Frameworks */,
+				51944F6B281EDE3F00E25340 /* LXCommonKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +154,7 @@
 		6072182927FD69E5007E50D3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				51944F69281ED1AF00E25340 /* LXCommonKit */,
 				6031B78428154BE600F51540 /* LXDowanloader */,
 				6031B78728154E0300F51540 /* LXLayout */,
 			);
@@ -191,6 +195,7 @@
 			packageProductDependencies = (
 				6031B78828154E3000F51540 /* LXLayoutKit */,
 				6074B5E32817EFD60015AC2E /* LXDownloadKit */,
+				51944F6A281EDE3F00E25340 /* LXCommonKit */,
 			);
 			productName = Example;
 			productReference = 6072180F27FD69CD007E50D3 /* Example.app */;
@@ -482,6 +487,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		51944F6A281EDE3F00E25340 /* LXCommonKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LXCommonKit;
+		};
 		6031B78828154E3000F51540 /* LXLayoutKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LXLayoutKit;

@@ -11,7 +11,8 @@ import LXDownloader
 
 
 extension LXDownloader {
-    static func download(task:DownloadTask) {
+    static func download(task:DownloadTask) throws {
+        try task.lxl_cache()
         if task.isM3U8File {
             
         }

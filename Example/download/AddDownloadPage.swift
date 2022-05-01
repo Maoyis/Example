@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import LXDownloader
+import LXM3U8
 
 class AddDownloadPage: page {
     enum Section {
@@ -17,6 +19,7 @@ class AddDownloadPage: page {
         case name
         case wait
         case analyzing
+        case expired
         case length
         case mimeType
         
@@ -25,6 +28,7 @@ class AddDownloadPage: page {
             case .name: return "文件名"
             case .link: return "网络连接"
             case .wait: return "等待输入"
+            case .expired: return "连接已失效"
             case .analyzing : return "分析中...."
             case .mimeType : return "文件类型"
             case .length: return "预估大小"
@@ -62,6 +66,11 @@ extension AddDownloadPage {
     @objc
     func commit(_ sender:UIBarButtonItem)  {
         print(task.name, task.link)
+        do {
+            try LXDownloader.download(task: task)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
     }
     func value(of item:Item) -> Any? {
         return task.value(forKey: item.rawValue)
@@ -196,23 +205,69 @@ extension AddDownloadPage {
         defer {
             self.table.reloadData()
         }
-        var reuqest = URLRequest.init(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
+        var reuqest = URLRequest.init(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 20)
         reuqest.httpMethod = "HEAD"
         self.items[1] = [.analyzing]
-        URLSession.shared.dataTask(with: reuqest) {[weak self] _, response, error in
+        URLSession.init(configuration: .default).downloadTask(with: reuqest) {[weak self] data, response, error in
             guard let self = self else { return }
+            let code = (response as! HTTPURLResponse).statusCode
             if let eor = error {
-                print(eor)
+                if code >= 400, code < 500 {
+                    self.task.expired = true
+                    self.items[1] = [.expired]
+                }else {
+                    fatalError(eor.localizedDescription)
+                }
                 return
             }
             self.task.mimeType = response?.mimeType
-            self.task.length   = response?.expectedContentLength ?? 0
-            self.items[1] = [.mimeType, .length]
+            if DownloadTask.isVideo(mimeType: response?.mimeType) {
+                self.task.length   = response?.expectedContentLength ?? 0
+            }else {
+                let m3u8:M3U8File = .transform(with: url)
+                if let content = try? String(contentsOf: url),
+                   m3u8.analysis(content: content) {
+                    if m3u8.playlist.count == 0,
+                       let stream = m3u8.getStream(),
+                       let streamURL = stream.URL,
+                       let streamContent = try? String(contentsOf: streamURL),
+                       m3u8.analysis(content: streamContent, of: stream),
+                       let node = m3u8.playlist.first,
+                       let nodeURL = URL(string: node.link)
+                    {
+                        let time = node.time
+                        let length = self.length(of: nodeURL)
+                        let duration = m3u8.duration
+                        self.task.length = Int64(TimeInterval(length)/time*duration)
+                    }
+                }
+            }
             OperationQueue.main.addOperation {
-                self.navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .done, target: self, action: #selector(self.commit(_:)))
+                if self.task.length > 0 {
+                    self.items[1] = [.mimeType, .length]
+                    self.navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .done, target: self, action: #selector(self.commit(_:)))
+                }else {
+                    self.items[1] = [.expired]
+                }
                 self.table.reloadData()
             }
         }.resume()
     }
     
+    
+    func length(of url:URL) -> Int64 {
+        var reuqest = URLRequest.init(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
+        reuqest.httpMethod = "HEAD"
+        let semaphore =  DispatchSemaphore.init(value: 0)
+        var length:Int64 = 0
+        URLSession.shared.dataTask(with: reuqest) {temp, response, error in
+            let code = (response as! HTTPURLResponse).statusCode
+            if code == 200 {
+                length = response?.expectedContentLength ?? 0
+            }
+            semaphore.signal()
+        }.resume()
+        semaphore.wait()
+        return length
+    }
 }

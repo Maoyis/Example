@@ -8,30 +8,7 @@
 import UIKit
 import LXDownloader
 
-extension LXDownloadTask {
-    func map() -> [String:Any] {
-        return [
-            "input" : input.absoluteString,
-            "name"  : name
-        ]
-    }
-}
-
 class DownloadPage: page {
-    struct TaskRecord {
-        var input:URL!
-        var name:String!
-        
-        
-    }
-    var historyFile:URL {
-        guard let cache = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
-            fatalError("no cache floder")
-        }
-        var file = URL(fileURLWithPath: cache)
-        file.appendPathComponent("tasks.plsit")
-        return file
-    }
     enum Item : String {
         case common
         case m3u8
@@ -60,7 +37,6 @@ class DownloadPage: page {
         table.lx_tiling()
         self.navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .add, target: self, action: #selector(addAction(_:)))
         self.loadTasks()
-        print(historyFile)
     }
     @objc
     func addAction(_ sender:UIBarButtonItem)  {
@@ -69,33 +45,13 @@ class DownloadPage: page {
     }
     func insert(task:LXDownloadTask)  {
         tasks.append(task)
-        updateFile()
         self.table.reloadData()
     }
     func delete(index:Int)  {
         tasks.remove(at: index)
-        updateFile()
-    }
-    func updateFile() {
-        try! (tasks.map({$0.map()}) as NSArray).write(to: historyFile)
     }
     func loadTasks()  {
-        let infos = NSArray(contentsOf: historyFile)
-        infos?.forEach { map  in
-            let info = map as! [String:Any]
-            let input = URL(string: info["input"] as! String)!
-            let name = info["name"] as! String
-            var model:LXDownloadTask!
-            if input.absoluteString.contains(".m3u8") {
-                model = LXM3U8DownloadTask.task(with: input, name: name)
-            }else {
-                model = LXCommonDownloadTask.task(with: input, name: name)
-            }
-            downloader.download(task: model)
-            tasks.append(model)
-        }
-        table.reloadData()
-
+       
     }
 }
 
