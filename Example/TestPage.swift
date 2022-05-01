@@ -13,12 +13,15 @@ class TestPage: page {
         super.viewDidLoad()
         self.title = "测试页"
         
-        let link = "http://stream10.fjtv.net/cctv1/playlist.m3u8?_upt=4f9c1b3b1651226109"
+        let link = "https://devstreaming-cdn.apple.com/videos/wwdc/2021/10143/8/02A20AB5-0C7F-4E9F-B252-75A25D1261ED/downloads/wwdc2021-10143_sd.mp4"
         guard let url = URL(string: link) else { return }
-        let reuqest = URLRequest.init(url: url)
+        var reuqest = URLRequest.init(url: url)
+        reuqest.httpMethod = "HEAD"
         URLSession.shared.downloadTask(with: reuqest) { url, response, error in
             if let resp  = response as? HTTPURLResponse {
                 print(resp)
+                print(resp.expectedContentLength)
+                print(resp.mimeType ?? "")
             }
         }.resume()
     }

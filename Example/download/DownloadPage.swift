@@ -58,10 +58,15 @@ class DownloadPage: page {
         super.viewDidLoad()
         self.title = "下载"
         table.lx_tiling()
+        self.navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .add, target: self, action: #selector(addAction(_:)))
         self.loadTasks()
         print(historyFile)
     }
-    
+    @objc
+    func addAction(_ sender:UIBarButtonItem)  {
+        let page = AddDownloadPage.init()
+        navigationController?.pushViewController(page, animated: true)
+    }
     func insert(task:LXDownloadTask)  {
         tasks.append(task)
         updateFile()
