@@ -13,6 +13,7 @@ import UIKit
 class Homepage: page {
     enum Item : String {
         case downloader = "lx-downloader"
+        case ad
         case test
 
         case other
@@ -28,7 +29,7 @@ class Homepage: page {
     }()
     
     let data:[[Item]] = [
-        [.downloader],
+        [.downloader, .ad],
         [.test]
     ]
     
@@ -65,6 +66,7 @@ extension Homepage : UITableViewDelegate, UITableViewDataSource {
         switch item {
         case .downloader: page = DownloadPage()
         case .test: page = TestPage()
+        case .ad: page = AdPage()
         default:
             break
         }

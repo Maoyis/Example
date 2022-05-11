@@ -12,6 +12,7 @@ import CoreData
 import LXLayoutKit
 import LXDownloader
 import LXCommonKit
+import LXADKit
 
 
 @main
@@ -21,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LXDownloader.default.maxCount = 3
+        AdMannager.default.launch()
+
         return true
     }
 
